@@ -26,12 +26,29 @@ class UserService extends Service {
       password: this.ctx.helper.encrypt(password),
     });
 
-    return user;
+    if (user) {
+      const token = this.app.jwt.sign(
+        { id: user.id },
+        this.app.config.jwt.secret,
+        this.app.config.jwt.options
+      );
+
+      return `Bearer ${token}`;
+    }
   }
   async findById(id) {
     const user = await this.ctx.model.User.findById(id);
-
+    console.log(this.app.jwt.decode(this.ctx.request.header.authorization.split(' ')[1]));
     return user;
+  }
+  async destroy(id) {
+    const ret = await this.ctx.model.User.destroy({
+      where: {
+        id,
+      },
+    });
+
+    return ret;
   }
 }
 

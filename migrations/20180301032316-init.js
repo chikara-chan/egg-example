@@ -8,10 +8,14 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      username: STRING,
+      username: {
+        type: STRING,
+        unique: true,
+      },
       password: STRING,
       created_at: DATE,
       updated_at: DATE,
+      deleted_at: DATE,
     });
     queryInterface.bulkInsert('users', [
       {
