@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:carbon' 
+            args '--link mysql:mysql-container'
         }
     }
     stages {

@@ -1,5 +1,5 @@
 'use strict';
-console.log(process.env.NODE_ENV);
+
 module.exports = appInfo => {
   const config = exports = {};
 
