@@ -1,16 +1,23 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'node:carbon' 
+        }
+    }
     stages {
+        stage('Prepare') {
+            steps {
+                sh 'ls -al /var/jenkins_home'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building..'
-                sh 'ls -al /var/jenkins_home'
+                sh 'npm run install'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'npm run test'
             }
         }
         stage('Deploy') {
