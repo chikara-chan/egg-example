@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'ls -al /var/jenkins_home'
             }
         }
         stage('Test') {
