@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'ls -al /var/jenkins_home'
+                sh 'npm install'
             }
         }
         stage('Test') {
